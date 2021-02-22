@@ -1,0 +1,11 @@
+{% extends 'todoApp/base.html' %}
+
+{% block content %}
+<ul>
+    {% for todo in todos%}
+        <li><a href='#'>{{ todo.taskName}} - 
+        {{ todo.date_completed }}
+        </a></li>
+    {% endfor %}
+</ul>
+{% endblock%}

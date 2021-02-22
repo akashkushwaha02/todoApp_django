@@ -1,0 +1,16 @@
+{% extends 'todoApp/base.html' %}
+
+{% block content %}
+
+<h1>Log In</h1>
+
+<h2>{{ error }}
+    {{ integrity }}
+    </h2>
+    
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Login user</button>
+    </form>
+{% endblock %}

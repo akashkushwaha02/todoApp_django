@@ -1,0 +1,49 @@
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Todo App</title>
+    
+  </head>
+  <body class=" conatiner-fluid"> 
+        
+    <header class="shadow-lg p-3 mb-5 bg-body rounded" > 
+        <span>                
+                <a href='{%url "home" %}' style="text-decoration: none;color: black;font-weight:bold;"><img src='https://svgshare.com/i/UJJ.svg' title='' style="height: 30px;"/>Todo Application</a>
+        </span>
+                <span style='align-items: right;'>                        
+                {% if user.is_authenticated %}
+                Logged in as {{user.username}}
+                <a href='{% url "createtodo" %}'>Create</a>
+                <a href='{% url "currenttodo" %}'>Current</a>
+                <a href='{% url "completedtodo" %}'>Completed</a>
+                <form method='POST' action="{% url 'logoutuser' %}">
+                        {% csrf_token %}
+                        <button type='submit' class="button btn-primary" style="text-align: right;">Logout</button>
+                </form>
+                {% else %}
+                        
+                        <a href="{% url 'signupuser' %}">Sign up </a>
+                        <a href="{% url 'loginuser' %}">Log in </a>
+                {% endif %}
+        </span>
+    </header>
+
+    <div>
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  </body>
+</html>
